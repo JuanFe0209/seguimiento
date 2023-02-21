@@ -22,6 +22,15 @@ public class Alumno  extends Persona {
         this.institucion = institucion;
     }
 
+    public Alumno(String nombre, String apellido, int edad,
+                  String institucion, double notaMatematicas, double notaCastellano,
+                  double notaHistoria){
+        this(nombre, apellido, edad, institucion);
+        this.notaMatematicas = notaMatematicas;
+        this.notaCastellano = notaCastellano;
+        this.notaHistoria = notaHistoria;
+    }
+
 
     public String getInstitucion() {
         return institucion;
@@ -53,5 +62,25 @@ public class Alumno  extends Persona {
 
     public void setNotaHistoria(double notaHistoria) {
         this.notaHistoria = notaHistoria;
+    }
+    @Override
+    public String saludar(){
+        String saludar = super.saludar();
+        return saludar + " soy un alumno y mi nombre es " + getNombre();
+    }
+
+    public double calcularPromedio(){
+      //  System.out.println("Calcular promedio " + Alumno.class.getCanonicalName());
+        return (notaHistoria + notaCastellano + notaMatematicas)/3;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\ninstitucion='" + institucion + '\'' +
+                ", notaMatematicas=" + notaMatematicas +
+                ", notaCastellano=" + notaCastellano +
+                ", notaHistoria=" + notaHistoria +
+                ", promedio = " + this.calcularPromedio();
     }
 }

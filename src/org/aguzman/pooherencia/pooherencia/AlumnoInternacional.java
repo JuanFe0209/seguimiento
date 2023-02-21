@@ -1,11 +1,19 @@
 package org.aguzman.pooherencia.pooherencia;
 
-public class AlumnoInternacional extends Alumno {
+public final class AlumnoInternacional extends Alumno {
     private String pais;
     private double notaIdiomas;
 
     public AlumnoInternacional(){
         System.out.println("Alumno Internacional: Inicializando constructor...");
+    }
+    public AlumnoInternacional(String nombre, String apellido){
+        super(nombre, apellido);
+    }
+
+    public AlumnoInternacional(String nombre, String apellido, String pais){
+        super(nombre, apellido);
+        this.pais = pais;
     }
 
     public String getPais() {
@@ -22,5 +30,23 @@ public class AlumnoInternacional extends Alumno {
 
     public void setNotaIdiomas(double notaIdiomas) {
         this.notaIdiomas = notaIdiomas;
+    }
+
+    @Override
+    public String saludar() {
+        return super.saludar() + " soy un alumno extranjero del país " + getPais();
+    }
+
+    @Override
+    public double calcularPromedio() {
+       // System.out.println("Calcular promedio" + AlumnoInternacional.class.getCanonicalName());
+        return ((super.calcularPromedio()*3) + notaIdiomas)/4;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\npais='" + pais + '\'' +
+                ", notaIdiomas=" + notaIdiomas;
     }
 }
